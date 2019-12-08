@@ -1,0 +1,18 @@
+name: 'Close Duplicate Issues'
+branding:
+  icon: 'message-circle'
+  color: 'blue'
+description: 'Close duplicate issues for matched content with a given reply message and labels to add'
+inputs: 
+  items:
+    description: 'Json String with items to parse'
+    required: true
+  toekn:
+    description: 'Github token of the repository'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.items }}
+    - ${{ inputs.token }}
