@@ -1,8 +1,12 @@
 # Close Duplicate Issues - GitHub Actions
 
-A GitHub action that closes dulicate issues with a given message and labels.
+A GitHub action that closes duplicate issues where a specific string is found, replies with a given defined message, and optionally adds labels and closes the issue.
 
 ## Usage
+
+For an opened issue the items are checked in order and if a match is found the resto of items are not checked.
+
+Order is important!
 
 ```
 name: Close duplicate issues
@@ -21,7 +25,14 @@ jobs:
              {
                "string": "ValueError: cannot set WRITEABLE flag to True of this array",
                "reply": "To fix this problem please update to Spyder 4.<br><br>Closing as duplicate of Issue #1",
-               "labels": ["resolution:Duplicate"]
+               "labels": ["resolution:Duplicate"],
+               "close": true
+             },
+             {
+               "string": "ValueError: Some other error",
+               "reply": "To fix this problem please update to Spyder 4.",
+               "labels": ["resolution:Duplicate"],
+               "close": false
              }
             ]
 ```

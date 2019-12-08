@@ -8,8 +8,7 @@ async function run() {
     const items = JSON.parse(items_string);
     const context = github.context;
 
-    if (context.payload.pull_request == null && context.payload.action == 'reopened') {
-    // if (context.payload.pull_request == null && context.payload.action == 'opened') {
+    if (context.payload.pull_request == null && context.payload.action == 'opened') {
       const issue_number = context.payload.issue.number;
       const body = context.payload.issue.body;
 
@@ -28,7 +27,7 @@ async function run() {
           });
 
           if (item.labels != null) {
-            console.log('Adding labels!')
+            console.log('Adding labels!');
             const add_label = octokit.issues.addLabels({
               ...context.repo,
               issue_number: issue_number,
@@ -37,8 +36,7 @@ async function run() {
           }
 
           if (item.close != null && item.close) {
-            console.log('Closing issue!')
-            core.debug('Closing issue');
+            console.log('Closing issue!');
             const close_issue = octokit.issues.update({
               ...context.repo,
               issue_number: issue_number,
