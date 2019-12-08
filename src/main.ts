@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 async function run() {
-  core.debug('👋 Hello! You are an amazing person! 🙌')
+  console.log('👋 Hello! You are an amazing person! 🙌')
   try {
     const token = core.getInput('token');
     const items_string = core.getInput('items');
@@ -15,12 +15,12 @@ async function run() {
 
       for (let item of items) {
         if (body.includes(item.string)) {
-          core.debug(item.string);
-          core.debug(item.reply);
-          core.debug(item.labels);
+          console.log(item.string);
+          console.log(item.reply);
+          console.log(item.labels);
 
           if (item.string == null || item.reply == null) {
-            core.debug('Must provide string and reply!');
+            console.log('Must provide string and reply!');
             return
           }
 
