@@ -8,7 +8,7 @@ For an opened issue the items are checked in order and if a match is found the r
 
 Order is important!
 
-```
+```yaml
 name: Close duplicate issues
 
 on: [issues]
