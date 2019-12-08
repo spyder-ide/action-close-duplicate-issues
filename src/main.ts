@@ -27,11 +27,22 @@ async function run() {
             body: item.reply,
           });
 
-          if (item.label != null) {
+          if (item.labels != null) {
+            console.log('Adding labels!')
             const add_label = octokit.issues.addLabels({
               ...context.repo,
               issue_number: issue_number,
               labels: item.labels
+            });
+          }
+
+          if (item.close != null && item.close) {
+            console.log('Closing issue!')
+            core.debug('Closing issue');
+            const close_issue = octokit.issues.update({
+              ...context.repo,
+              issue_number: issue_number,
+              state: 'closed'
             });
           }
 
