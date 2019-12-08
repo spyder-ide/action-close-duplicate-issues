@@ -1,0 +1,3 @@
+The Contributors are composed of:
+
+* Gonzalo Peña-Castellanos <goanpeca@gmail.com> (Original author)
