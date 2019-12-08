@@ -2,23 +2,19 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 async function run() {
-  console.log('👋 Hello! You are an amazing person! 🙌')
   try {
     const token = core.getInput('token');
     const items_string = core.getInput('items');
     const items = JSON.parse(items_string);
     const context = github.context;
 
-    if (context.payload.pull_request == null && context.payload.action == 'opened') {
+    if (context.payload.pull_request == null && context.payload.action == 'reopened') {
+    // if (context.payload.pull_request == null && context.payload.action == 'opened') {
       const issue_number = context.payload.issue.number;
       const body = context.payload.issue.body;
 
       for (let item of items) {
         if (body.includes(item.string)) {
-          console.log(item.string);
-          console.log(item.reply);
-          console.log(item.labels);
-
           if (item.string == null || item.reply == null) {
             console.log('Must provide string and reply!');
             return
