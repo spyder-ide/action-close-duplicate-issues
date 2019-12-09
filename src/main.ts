@@ -41,7 +41,9 @@ async function run() {
             });
 
             const issueLabelsString = JSON.stringify(issueLabels, undefined, 2);
-            console.log(`\nInformation: The labels payload\n ${issueLabelsString}`);
+            console.log(
+              `\nInformation: The labels payload\n ${issueLabelsString}`
+            );
 
             // for (let label of item.labels) {
             //   if (!issueLabels.some(issueLabel => label === issueLabel.name)) {

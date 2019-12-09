@@ -6676,11 +6676,15 @@ function run() {
                         if (item.labels) {
                             // Check if label exists
                             const issueLabels = octokit.issues.listLabelsOnIssue(Object.assign(Object.assign({}, context.repo), { issue_number: issue_number }));
-                            for (let label of item.labels) {
-                                if (!issueLabels.some(issueLabel => label === issueLabel.name)) {
-                                    console.log(`\nWarning: Label "${label}" not found in repository!`);
-                                }
-                            }
+                            const issueLabelsString = JSON.stringify(issueLabels, undefined, 2);
+                            console.log(`\nInformation: The labels payload\n ${issueLabelsString}`);
+                            // for (let label of item.labels) {
+                            //   if (!issueLabels.some(issueLabel => label === issueLabel.name)) {
+                            //     console.log(
+                            //       `\nWarning: Label "${label}" not found in repository!`
+                            //     );
+                            //   }
+                            // }
                             console.log("\nInformation: Adding labels!");
                             const add_label = octokit.issues.addLabels(Object.assign(Object.assign({}, context.repo), { issue_number: issue_number, labels: item.labels }));
                         }
