@@ -35,9 +35,10 @@ async function run() {
 
           if (item.labels) {
             // Check if labels exist on repository
-            const issueLabels = octokit.issues.listLabelsForRepo({
-              ...context.repo,
-            }) || [];
+            const issueLabels =
+              octokit.issues.listLabelsForRepo({
+                ...context.repo
+              }) || [];
 
             const issueLabelsString = JSON.stringify(issueLabels, undefined, 2);
             console.log(
