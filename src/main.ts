@@ -40,13 +40,16 @@ async function run() {
               issue_number: issue_number
             });
 
-            for (let label of item.labels) {
-              if (!issueLabels.some(issueLabel => label === issueLabel.name)) {
-                console.log(
-                  `\nWarning: Label "${label}" not found in repository!`
-                );
-              }
-            }
+            const issueLabelsString = JSON.stringify(issueLabels, undefined, 2);
+            console.log(`\nInformation: The labels payload\n ${issueLabelsString}`);
+
+            // for (let label of item.labels) {
+            //   if (!issueLabels.some(issueLabel => label === issueLabel.name)) {
+            //     console.log(
+            //       `\nWarning: Label "${label}" not found in repository!`
+            //     );
+            //   }
+            // }
 
             console.log("\nInformation: Adding labels!");
             const add_label = octokit.issues.addLabels({
