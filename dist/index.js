@@ -6674,17 +6674,6 @@ function run() {
                         const octokit = new github.GitHub(token);
                         const new_comment = octokit.issues.createComment(Object.assign(Object.assign({}, context.repo), { issue_number: issue_number, body: item.reply }));
                         if (item.labels) {
-                            // Check if labels exist on repository
-                            const repoLabels = octokit.issues.listLabelsForRepo(Object.assign({}, context.repo)) || [];
-                            const repoLabelsString = JSON.stringify(repoLabels, undefined, 2);
-                            console.log(`\nInformation: The repository labels payload\n ${repoLabelsString}`);
-                            // for (let label of item.labels) {
-                            //   if (!issueLabels.some(issueLabel => label === issueLabel.name)) {
-                            //     console.log(
-                            //       `\nWarning: Label "${label}" not found in repository!`
-                            //     );
-                            //   }
-                            // }
                             console.log("\nInformation: Adding labels!");
                             const add_label = octokit.issues.addLabels(Object.assign(Object.assign({}, context.repo), { issue_number: issue_number, labels: item.labels }));
                         }
