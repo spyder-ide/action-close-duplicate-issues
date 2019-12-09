@@ -8,7 +8,7 @@ async function run() {
     const items = JSON.parse(items_string);
     const context = github.context;
     const payload = JSON.stringify(context.payload, undefined, 2);
-    console.log(`The event payload: ${payload}`);
+    console.log(`Information: The event payload: ${payload}`);
 
     if (!context.payload.pull_request && context.payload.action == "opened") {
       const issue_number = context.payload.issue.number;
@@ -16,10 +16,10 @@ async function run() {
 
       for (let item of items) {
         const itemJ = JSON.stringify(item, undefined, 2);
-        console.log(`The item payload: ${itemJ}`);
-    
+        console.log(`Information: The item payload: ${itemJ}`);
+
         if (!item.pattern || !item.reply) {
-          console.log("Must provide pattern and reply!");
+          console.log("Warning: Must provide pattern and reply!");
           return;
         }
 
@@ -34,7 +34,19 @@ async function run() {
           });
 
           if (!item.labels) {
-            console.log("Adding labels!");
+            // Check if label exists
+            const issueLabels = octokit.issues.listLabelsOnIssue({
+              ...context.repo,
+              issue_number: issue_number,
+            });
+
+            for (let label of item.labels) {
+              if (!issueLabels.some(issueLabel => label === issueLabel.name)) {
+                console.log(`Warning: Label "${label}" not found in repository!`);
+              }
+            }
+
+            console.log("Information: Adding labels!");
             const add_label = octokit.issues.addLabels({
               ...context.repo,
               issue_number: issue_number,
