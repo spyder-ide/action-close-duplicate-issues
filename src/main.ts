@@ -34,24 +34,23 @@ async function run() {
           });
 
           if (item.labels) {
-            // Check if label exists
-            const issueLabels = octokit.issues.listLabelsOnIssue({
+            // Check if labels exist on repository
+            const issueLabels = octokit.issues.listLabelsForRepo({
               ...context.repo,
-              issue_number: issue_number
-            });
+            }) || [];
 
             const issueLabelsString = JSON.stringify(issueLabels, undefined, 2);
             console.log(
               `\nInformation: The labels payload\n ${issueLabelsString}`
             );
 
-            // for (let label of item.labels) {
-            //   if (!issueLabels.some(issueLabel => label === issueLabel.name)) {
-            //     console.log(
-            //       `\nWarning: Label "${label}" not found in repository!`
-            //     );
-            //   }
-            // }
+            for (let label of item.labels) {
+              if (!issueLabels.some(issueLabel => label === issueLabel.name)) {
+                console.log(
+                  `\nWarning: Label "${label}" not found in repository!`
+                );
+              }
+            }
 
             console.log("\nInformation: Adding labels!");
             const add_label = octokit.issues.addLabels({
