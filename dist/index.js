@@ -6664,11 +6664,14 @@ function run() {
                 const issue_number = context.payload.issue.number;
                 const body = context.payload.issue.body;
                 for (let item of items) {
-                    if (body.includes(item.string)) {
-                        if (item.string == null || item.reply == null) {
-                            console.log("Must provide string and reply!");
-                            return;
-                        }
+                    const itemJ = JSON.stringify(item, undefined, 2);
+                    console.log(`The item content: ${itemJ}`);
+                    if (item.pattern == null || item.reply == null) {
+                        console.log("Must provide pattern and reply!");
+                        return;
+                    }
+                    const pattern = new RegExp(item.pattern);
+                    if (body && body.match(pattern)) {
                         const octokit = new github.GitHub(token);
                         const new_comment = octokit.issues.createComment(Object.assign(Object.assign({}, context.repo), { issue_number: issue_number, body: item.reply }));
                         if (item.labels != null) {
