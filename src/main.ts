@@ -8,14 +8,13 @@ async function run() {
     const items = JSON.parse(items_string);
     const context = github.context;
     const payload = JSON.stringify(context.payload, undefined, 2);
-    console.log(`\nInformation: The event payload: ${payload}`);
+    console.log(`\nInformation: The event payload\n ${payload}`);
 
     if (!context.payload.pull_request && context.payload.action == "opened") {
       const issue_number = context.payload.issue.number;
       const body = context.payload.issue.body;
 
       for (let item of items) {
-
         if (!item.pattern || !item.reply) {
           console.log("\nWarning: Must provide 'pattern' and 'reply'!");
           return;
@@ -25,7 +24,7 @@ async function run() {
 
         if (body && body.match(pattern)) {
           const itemJ = JSON.stringify(item, undefined, 2);
-          console.log(`\nInformation: The item payload: ${itemJ}`);  
+          console.log(`\nInformation: The item payload\n ${itemJ}`);
 
           const octokit = new github.GitHub(token);
           const new_comment = octokit.issues.createComment({
@@ -34,7 +33,7 @@ async function run() {
             body: item.reply
           });
 
-          if (!item.labels) {
+          if (item.labels) {
             // Check if label exists
             const issueLabels = octokit.issues.listLabelsOnIssue({
               ...context.repo,
