@@ -35,23 +35,23 @@ async function run() {
 
           if (item.labels) {
             // Check if labels exist on repository
-            const issueLabels =
+            const repoLabels =
               octokit.issues.listLabelsForRepo({
                 ...context.repo
               }) || [];
 
-            const issueLabelsString = JSON.stringify(issueLabels, undefined, 2);
+            const repoLabelsString = JSON.stringify(repoLabels, undefined, 2);
             console.log(
-              `\nInformation: The labels payload\n ${issueLabelsString}`
+              `\nInformation: The repository labels payload\n ${repoLabelsString}`
             );
 
-            for (let label of item.labels) {
-              if (!issueLabels.some(issueLabel => label === issueLabel.name)) {
-                console.log(
-                  `\nWarning: Label "${label}" not found in repository!`
-                );
-              }
-            }
+            // for (let label of item.labels) {
+            //   if (!issueLabels.some(issueLabel => label === issueLabel.name)) {
+            //     console.log(
+            //       `\nWarning: Label "${label}" not found in repository!`
+            //     );
+            //   }
+            // }
 
             console.log("\nInformation: Adding labels!");
             const add_label = octokit.issues.addLabels({
