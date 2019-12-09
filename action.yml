@@ -7,12 +7,9 @@ inputs:
   items:
     description: 'Json String with items to parse'
     required: true
-  toekn:
+  repo-token:
     description: 'Github token of the repository'
     required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.items }}
-    - ${{ inputs.token }}
+  using: 'node12'
+  main: 'dist/index.js'

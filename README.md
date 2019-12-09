@@ -41,9 +41,12 @@ jobs:
 
 ### Build 
 
-The build steps transpiles the `src/main.ts` to `lib/main.js` which is used in the Docker container. 
+The build steps transpiles the `src/main.ts` to `lib/main.js` and then packs to `dist/index.js`.
 It is handled by Typescript compiler. 
 
 ```sh
+$ npm run install
 $ npm run build
+$ npm run format
+$ npm run pack
 ```
