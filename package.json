@@ -1,6 +1,6 @@
 {
   "name": "actions-close-duplicate-issues",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "GitHub action for closing duplicate issues",
   "main": "lib/main.js",
   "scripts": {
@@ -14,12 +14,12 @@
   },
   "keywords": [
     "actions",
-    "container",
     "issues",
     "comment",
     "duplicate",
     "close",
-    "message"
+    "message",
+    "labels"
   ],
   "author": "Spyder Contributors",
   "license": "MIT",
@@ -36,12 +36,11 @@
   },
   "devDependencies": {
     "@types/node": "^12.0.4",
-    "husky": "^2.7.0",
+    "husky": "^3.1.0",
     "prettier": "^1.17.1",
     "typescript": "^3.5.1"
   },
   "husky": {
-    "skipCI": true,
     "hooks": {
       "pre-commit": "npm run build && npm run format && npm run pack"
     }

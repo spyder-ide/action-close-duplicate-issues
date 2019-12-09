@@ -1,11 +1,11 @@
 name: 'Close Duplicate Issues'
 branding:
   icon: 'message-circle'
-  color: 'blue'
+  color: 'green'
 description: 'Close duplicate issues for matched content with a given reply message and labels to add'
 inputs: 
   items:
-    description: 'Json String with items to parse'
+    description: 'JSON String with items to parse'
     required: true
   repo-token:
     description: 'Github token of the repository'

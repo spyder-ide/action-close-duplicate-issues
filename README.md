@@ -4,9 +4,11 @@ A GitHub action that closes duplicate issues where a specific string is found, r
 
 ## Usage
 
-For an opened issue the items are checked in order and if a match is found the resto of items are not checked.
+For an opened issue the items are checked in order and if a match is found the resto of the items are not checked.
 
 Order is important!
+
+Since actions do not support passing arrays as input parameters, we pass a JSON string for the items parameter.
 
 ```yaml
 name: Close duplicate issues
@@ -19,7 +21,7 @@ jobs:
     steps:
       - uses: spyder-ide/actions-close-duplicate-issues@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           items: >-
             [
              {
@@ -44,8 +46,12 @@ jobs:
 The build steps transpiles the `src/main.ts` to `lib/main.js` and then packs to `dist/index.js`.
 It is handled by Typescript compiler. 
 
+Install NodeJS 12.
+
 ```sh
 $ npm run install
+$ npm i -g @zeit/ncc
+
 $ npm run build
 $ npm run format
 $ npm run pack
