@@ -19,7 +19,7 @@ jobs:
   example:
     runs-on: ubuntu-latest
     steps:
-      - uses: spyder-ide/actions-close-duplicate-issues@master
+      - uses: spyder-ide/action-close-duplicate-issues@master
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           items: >-

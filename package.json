@@ -1,5 +1,5 @@
 {
-  "name": "actions-close-duplicate-issues",
+  "name": "action-close-duplicate-issues",
   "version": "0.1.0",
   "description": "GitHub action for closing duplicate issues",
   "main": "lib/main.js",
@@ -10,23 +10,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spyder-ide/actions-close-duplicate-issues"
+    "url": "git+https://github.com/spyder-ide/action-close-duplicate-issues"
   },
   "keywords": [
-    "actions",
-    "issues",
+    "action",
+    "issue",
     "comment",
     "duplicate",
     "close",
     "message",
-    "labels"
+    "label"
   ],
   "author": "Spyder Contributors",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/spyder-ide/actions-close-duplicate-issues/issues"
+    "url": "https://github.com/spyder-ide/action-close-duplicate-issues/issues"
   },
-  "homepage": "https://github.com/spyder-ide/actions-close-duplicate-issues#readme",
+  "homepage": "https://github.com/spyder-ide/action-close-duplicate-issues#readme",
   "dependencies": {
     "@actions/core": "^1.0.0",
     "@actions/io": "^1.0.0",
