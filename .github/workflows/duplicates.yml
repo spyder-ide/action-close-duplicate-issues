@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: spyder-ide/actions-close-duplicate-issues@master
         with:
-          token: ${{ secrets.SECRET_TOKEN }}
+          repo-token: ${{ secrets.SECRET_TOKEN }}
           items: >-
             [
              {

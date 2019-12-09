@@ -3,10 +3,12 @@ const github = require("@actions/github");
 
 async function run() {
   try {
-    const token = core.getInput("token");
+    const token = core.getInput("repo-token");
     const items_string = core.getInput("items");
     const items = JSON.parse(items_string);
     const context = github.context;
+    const payload = JSON.stringify(context.payload, undefined, 2)
+    console.log(`The event payload: ${payload}`);
 
     if (
       context.payload.pull_request == null &&
