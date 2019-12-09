@@ -6659,8 +6659,7 @@ function run() {
             const context = github.context;
             // const payload = JSON.stringify(context.payload, undefined, 2);
             // console.log(`The event payload: ${payload}`);
-            if (!context.payload.pull_request &&
-                context.payload.action == "opened") {
+            if (!context.payload.pull_request && context.payload.action == "opened") {
                 const issue_number = context.payload.issue.number;
                 const body = context.payload.issue.body;
                 for (let item of items) {

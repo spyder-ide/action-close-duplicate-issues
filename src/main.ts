@@ -7,14 +7,17 @@ async function run() {
     const items_string = core.getInput("items");
     const items = JSON.parse(items_string);
     const context = github.context;
-    // const payload = JSON.stringify(context.payload, undefined, 2);
-    // console.log(`The event payload: ${payload}`);
+    const payload = JSON.stringify(context.payload, undefined, 2);
+    console.log(`The event payload: ${payload}`);
 
     if (!context.payload.pull_request && context.payload.action == "opened") {
       const issue_number = context.payload.issue.number;
       const body = context.payload.issue.body;
 
       for (let item of items) {
+        const itemJ = JSON.stringify(item, undefined, 2);
+        console.log(`The item payload: ${itemJ}`);
+    
         if (!item.pattern || !item.reply) {
           console.log("Must provide pattern and reply!");
           return;
