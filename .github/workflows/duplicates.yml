@@ -12,13 +12,13 @@ jobs:
           items: >-
             [
              {
-               "string": "ValueError: cannot set WRITEABLE flag to True of this array",
+               "pattern": "ValueError: cannot set WRITEABLE flag to True of this array",
                "reply": "To fix this problem please update to Spyder 4.<br><br>Closing as duplicate of Issue #1",
                "labels": ["resolution:Duplicate"],
                "close": true
              },
              {
-               "string": "ValueError: Some other error",
+               "pattern": "ValueError: Some other error",
                "reply": "To fix this problem please update to Spyder 4.",
                "labels": ["resolution:Duplicate"],
                "close": false

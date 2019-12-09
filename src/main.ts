@@ -7,7 +7,7 @@ async function run() {
     const items_string = core.getInput("items");
     const items = JSON.parse(items_string);
     const context = github.context;
-    const payload = JSON.stringify(context.payload, undefined, 2)
+    const payload = JSON.stringify(context.payload, undefined, 2);
     console.log(`The event payload: ${payload}`);
 
     if (
@@ -18,12 +18,17 @@ async function run() {
       const body = context.payload.issue.body;
 
       for (let item of items) {
-        if (body.includes(item.string)) {
-          if (item.string == null || item.reply == null) {
-            console.log("Must provide string and reply!");
-            return;
-          }
+        const itemJ = JSON.stringify(item, undefined, 2);
+        console.log(`The item content: ${itemJ}`);
 
+        if (item.pattern == null || item.reply == null) {
+          console.log("Must provide pattern and reply!");
+          return;
+        }
+
+        const pattern: RegExp = new RegExp(item.pattern);
+
+        if (body && body.match(pattern)) {
           const octokit = new github.GitHub(token);
           const new_comment = octokit.issues.createComment({
             ...context.repo,
