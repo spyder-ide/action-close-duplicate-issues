@@ -49,7 +49,7 @@ It is handled by Typescript compiler.
 Install NodeJS 12.
 
 ```sh
-$ npm run install
+$ npm install
 $ npm i -g @zeit/ncc
 
 $ npm run build
