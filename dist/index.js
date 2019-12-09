@@ -6657,8 +6657,8 @@ function run() {
             const items_string = core.getInput("items");
             const items = JSON.parse(items_string);
             const context = github.context;
-            const payload = JSON.stringify(context.payload, undefined, 2);
-            console.log(`\nInformation: The event payload\n ${payload}`);
+            const contextString = JSON.stringify(context, undefined, 2);
+            console.log(`\nInformation: The event context\n ${contextString}`);
             if (!context.payload.pull_request && context.payload.action == "opened") {
                 const issue_number = context.payload.issue.number;
                 const body = context.payload.issue.body;
