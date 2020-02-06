@@ -7,6 +7,8 @@ inputs:
   items:
     description: 'JSON String with items to parse'
     required: true
+    description: 'JSON String with items to parse'
+    required: true
   repo-token:
     description: 'Github token of the repository'
     required: true
