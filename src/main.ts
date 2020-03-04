@@ -20,9 +20,14 @@ async function run() {
           return;
         }
 
+        // Debugging
         const pattern = new RegExp(item.pattern);
+        console.log(`\nDEBUG Pattern: ${pattern}`);
+        console.log(`\nDEBUG Match: ${body.match(pattern)}`);
+        const itemG = JSON.stringify(item, undefined, 2);
+        console.log(`\nDEBUG Item: The item payload\n ${itemG}`);
 
-        if (body && body.match(pattern)) {
+        if (body && (body.match(pattern) || body.includes(item.pattern))) {
           const itemJ = JSON.stringify(item, undefined, 2);
           console.log(`\nInformation: The item payload\n ${itemJ}`);
 
