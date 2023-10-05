@@ -1,5 +1,5 @@
 const core = require("@actions/core");
-const github = require("@actions/github");
+const github = require("@actions/github-script");
 
 async function run() {
   try {
@@ -52,7 +52,8 @@ async function run() {
             const close_issue = octokit.issues.update({
               ...context.repo,
               issue_number: issue_number,
-              state: "closed"
+              state: "closed",
+              state_reason: "not_planned"
             });
           }
 
